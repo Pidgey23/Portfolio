@@ -10,7 +10,7 @@ const translations = {
     nav_parcours: "Parcours",
     nav_contact: "Contact",
     location: "Montigny-le-Tilleul, Belgique",
-    hero_title: "La logique d’abord. <em>L’interface ensuite.</em>",    
+    hero_title: "La logique d’abord. <em>L’interface ensuite.</em>",
     cta_projects: "Voir mes projets",
     cta_contact: "Me contacter",
     cta_cv: "Télécharger mon CV",
@@ -30,7 +30,7 @@ const translations = {
     skill_methods: "Méthodes",
     section_projets: "Projets",
     proj1_title: "Intégration serveur dans la suite IPDirector",
-    proj1_meta: "EVS Broadcast Equipment · Travail de fin d'études · 2026",
+    proj1_meta: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> · Travail de fin d'études · 2026",
     proj1_desc: "Implémentation en .NET des protocoles de contrôle des serveurs Next-Gen EVS en remote IP. Intégration de la gestion distante d'un nouveau type de serveur dans la suite IPDirector, avec consommation d'une API REST et d'un WebSocket pour le contrôle et le suivi d'activité du serveur.",
     proj2_title: "EasyShop : une application pour retrait en point de collect",
     proj2_meta: "Projet scolaire",
@@ -42,7 +42,7 @@ const translations = {
     proj4_meta: "Projet scolaire",
     proj4_desc: "Application web complète en architecture client-serveur pour créer et gérer des listes de cadeaux, avec une interface développée en JSP côté client.",
     section_parcours: "Parcours",
-    exp1_title: "EVS Broadcast Equipment à Liège",
+    exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> à Liège",
     exp1_desc: "Stage de 15 semaines. Sujet de TFE : implémentation en .NET des protocoles de contrôle des serveurs Next-Gen EVS en remote IP pour la suite IPDirector.",
     exp2_title: "Technofutur TIC - role de chef de projet",
     exp2_desc: "Gestion de 16 étudiants lors d'un exercice de configuration de pare-feu CheckPoint, routeurs et postes de travail. Certificat Technofutur Labo Réseaux et CheckPoint.",
@@ -82,7 +82,7 @@ const translations = {
     skill_methods: "Methods",
     section_projets: "Projects",
     proj1_title: "Server integration into the IPDirector suite",
-    proj1_meta: "EVS Broadcast Equipment · Final-year project · 2026",
+    proj1_meta: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> · Final-year project · 2026",
     proj1_desc: "Implementation of control protocols for EVS Next-Gen servers over remote IP using .NET. Integrated remote management of a new server type into the IPDirector suite, consuming a REST API and a WebSocket for server control and activity monitoring.",
     proj2_title: "EasyShop: an application for click-and-collect",
     proj2_meta: "School project",
@@ -94,7 +94,7 @@ const translations = {
     proj4_meta: "School project",
     proj4_desc: "Full client-server web application for creating and managing gift lists, with a client interface developed using JSP.",
     section_parcours: "Experience",
-    exp1_title: "EVS Broadcast Equipment in Liège",
+    exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> in Liège",
     exp1_desc: "15-week internship. Final-year project: .NET implementation of control protocols for EVS Next-Gen servers over remote IP for the IPDirector suite.",
     exp2_title: "Technofutur TIC - Project lead",
     exp2_desc: "Managed 16 students during an exercise involving the configuration of Check Point firewalls, routers and workstations. Technofutur Networks Lab and Check Point certificate.",
@@ -105,8 +105,6 @@ const translations = {
     section_contact: "Contact",
     contact_text: "Available for a first backend developer role. Feel free to get in touch."
   }
-
-
 };
 
 let currentLang = localStorage.getItem('portfolio-lang') || 'fr';
@@ -153,14 +151,23 @@ sections.forEach(section => sectionObserver.observe(section));
 
 const navLinks = document.querySelectorAll('.nav a');
 
+function setActiveNav(href) {
+  navLinks.forEach(link => {
+    const isActive = link.getAttribute('href') === href;
+    link.classList.toggle('active', isActive);
+    if (isActive) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
-        const isActive = link.getAttribute('href') === `#${id}`;
-        link.classList.toggle('active', isActive);
-      });
+      setActiveNav(`#${id}`);
     }
   });
 }, {
@@ -175,8 +182,6 @@ window.addEventListener('scroll', () => {
   const docHeight = document.documentElement.scrollHeight;
 
   if (scrollBottom >= docHeight - 80) {
-    navLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === '#contact');
-    });
+    setActiveNav('#contact');
   }
 }, { passive: true });
