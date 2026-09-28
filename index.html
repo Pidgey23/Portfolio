@@ -72,7 +72,7 @@
         <div class="hero-cta">
           <a href="#projets" class="btn btn-primary" data-i18n="cta_projects">Voir mes projets</a>
           <a href="#contact" class="btn btn-ghost" data-i18n="cta_contact">Me contacter</a>
-          <a href="PASQUE-JULIEN-CV.pdf" class="btn btn-ghost" download data-i18n="cta_cv">Télécharger mon CV</a>
+          <a href="FR-PASQUE-JULIEN-CV.pdf" class="btn btn-ghost" id="cv-download" download data-i18n="cta_cv">Télécharger mon CV</a>
         </div>
       </header>
 
@@ -128,41 +128,20 @@
 
       <section id="competences" class="section">
         <h3 class="section-title"><span class="num">02</span><span data-i18n="section_competences">Compétences</span></h3>
-        <div class="skills-grid">
-          <div class="skill-group glass-card">
-            <p class="skill-label" data-i18n="skill_lang">Langages</p>
-            <div class="tags">
-              <span class="tag">C#</span><span class="tag">Java</span><span class="tag">Python</span>
-              <span class="tag">C</span><span class="tag">UML</span>
+        <div class="skills-carousel glass-card">
+          <div class="skills-carousel-header">
+            <button type="button" class="skills-nav skills-prev" aria-label="Précédent">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="skills-nav skills-next" aria-label="Suivant">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="skills-track-wrapper">
+            <div class="skills-track" id="skills-track">
             </div>
           </div>
-          <div class="skill-group glass-card">
-            <p class="skill-label" data-i18n="skill_web">Web</p>
-            <div class="tags">
-              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-              <span class="tag">ASP.NET Core MVC</span><span class="tag">JEE / JSP</span>
-            </div>
-          </div>
-          <div class="skill-group glass-card">
-            <p class="skill-label" data-i18n="skill_data">Données</p>
-            <div class="tags">
-              <span class="tag">SQL</span><span class="tag">PL/SQL</span>
-            </div>
-          </div>
-          <div class="skill-group glass-card">
-            <p class="skill-label" data-i18n="skill_tools">Outils</p>
-            <div class="tags">
-              <span class="tag">Git · Gitflow</span><span class="tag">GitHub</span>
-              <span class="tag">Visual Studio</span><span class="tag">Jira</span>
-              <span class="tag">Confluence</span><span class="tag">Bitbucket</span>
-            </div>
-          </div>
-          <div class="skill-group glass-card">
-            <p class="skill-label" data-i18n="skill_methods">Méthodes</p>
-            <div class="tags">
-              <span class="tag">Scrum</span><span class="tag">Travail en équipe</span>
-            </div>
-          </div>
+          <div class="skills-dots" id="skills-dots" aria-hidden="true"></div>
         </div>
       </section>
 
@@ -301,14 +280,14 @@
           <div class="timeline-item glass-card">
             <p class="timeline-date">2025</p>
             <div class="timeline-body">
-              <h4 data-i18n="exp2_title">Technofutur TIC role de chef de projet</h4>
+              <h4 data-i18n="exp2_title"><a href="https://technofuturtic.be" target="_blank" rel="noopener">Technofutur TIC</a> - role de chef de projet</h4>
               <p data-i18n="exp2_desc">Gestion de 16 étudiants lors d'un exercice de configuration de pare-feu CheckPoint, routeurs et postes de travail. Certificat Technofutur Labo Réseaux et CheckPoint.</p>
             </div>
           </div>
           <div class="timeline-item glass-card">
             <p class="timeline-date">2025</p>
             <div class="timeline-body">
-              <h4 data-i18n="exp3_title">Hackathon MIC à Mons</h4>
+              <h4 data-i18n="exp3_title">Hackathon <a href="https://www.mic-belgique.be" target="_blank" rel="noopener">MIC</a> à Mons</h4>
               <p data-i18n="exp3_desc">Méthode Scrum, technologies Microsoft. Livraison d'un prototype fonctionnel en 48 heures.</p>
             </div>
           </div>

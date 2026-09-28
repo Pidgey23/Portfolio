@@ -3,7 +3,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const translations = {
   fr: {
     portfolio: "Portfolio",
-    role: "Développeur backend junior<br>.NET · C# · Java",
+    role: "Développeur fullstack junior<br>.NET · C# · Java",
     nav_profil: "Profil",
     nav_competences: "Compétences",
     nav_projets: "Projets",
@@ -44,9 +44,9 @@ const translations = {
     section_parcours: "Parcours",
     exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> à Liège",
     exp1_desc: "Stage de 15 semaines. Sujet de TFE : implémentation en .NET des protocoles de contrôle des serveurs Next-Gen EVS en remote IP pour la suite IPDirector.",
-    exp2_title: "Technofutur TIC - role de chef de projet",
+    exp2_title: "<a href=\"https://technofuturtic.be\" target=\"_blank\" rel=\"noopener\">Technofutur TIC</a> - role de chef de projet",
     exp2_desc: "Gestion de 16 étudiants lors d'un exercice de configuration de pare-feu CheckPoint, routeurs et postes de travail. Certificat Technofutur Labo Réseaux et CheckPoint.",
-    exp3_title: "Hackathon MIC à Mons",
+    exp3_title: "Hackathon <a href=\"https://www.mic-belgique.be\" target=\"_blank\" rel=\"noopener\">MIC</a> à Mons",
     exp3_desc: "Méthode Scrum, technologies Microsoft. Livraison d'un prototype fonctionnel en 48 heures.",
     exp4_title: "HEPH Condorcet - Bachelier en informatique",
     exp4_desc: "Orientation développement d'applications.",
@@ -55,7 +55,7 @@ const translations = {
   },
   en: {
     portfolio: "Portfolio",
-    role: "Junior Backend Developer<br>.NET · C# · Java",
+    role: "Junior fullstack Developer<br>.NET · C# · Java",
     nav_profil: "About",
     nav_competences: "Skills",
     nav_projets: "Projects",
@@ -96,9 +96,9 @@ const translations = {
     section_parcours: "Experience",
     exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> in Liège",
     exp1_desc: "15-week internship. Final-year project: .NET implementation of control protocols for EVS Next-Gen servers over remote IP for the IPDirector suite.",
-    exp2_title: "Technofutur TIC - Project lead",
+    exp2_title: "<a href=\"https://technofuturtic.be\" target=\"_blank\" rel=\"noopener\">Technofutur TIC</a> - Project lead",
     exp2_desc: "Managed 16 students during an exercise involving the configuration of Check Point firewalls, routers and workstations. Technofutur Networks Lab and Check Point certificate.",
-    exp3_title: "MIC Hackathon in Mons",
+    exp3_title: "<a href=\"https://www.mic-belgique.be\" target=\"_blank\" rel=\"noopener\">MIC</a> Hackathon in Mons",
     exp3_desc: "Scrum methodology and Microsoft technologies. Delivered a working prototype within 48 hours.",
     exp4_title: "HEPH Condorcet - Bachelor's degree in Computer Science",
     exp4_desc: "Application development track.",
@@ -126,6 +126,11 @@ function setLanguage(lang) {
     btn.classList.toggle('active', isActive);
     btn.setAttribute('aria-pressed', isActive);
   });
+
+  const cvLink = document.getElementById('cv-download');
+  if (cvLink) {
+    cvLink.href = lang === 'en' ? 'EN-PASQUE-JULIEN-CV.pdf' : 'FR-PASQUE-JULIEN-CV.pdf';
+  }
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -185,3 +190,203 @@ window.addEventListener('scroll', () => {
     setActiveNav('#contact');
   }
 }, { passive: true });
+
+const skillCategories = [
+  {
+    key: 'skill_lang',
+    skills: [
+      { name: 'C#', level: 4.5 },
+      { name: 'Java', level: 4 },
+      { name: 'Python', level: 3 },
+      { name: 'C', level: 2 },
+      { name: 'UML', level: 3.5 }
+    ]
+  },
+  {
+    key: 'skill_web',
+    skills: [
+      { name: 'HTML / CSS', level: 4 },
+      { name: 'JavaScript', level: 3 },
+      { name: '.NET', level: 4 },
+      { name: 'JEE / JSP', level: 4 }
+    ]
+  },
+  {
+    key: 'skill_data',
+    skills: [
+      { name: 'SQL', level: 3.5 },
+      { name: 'PL/SQL', level: 2 }
+    ]
+  },
+  {
+    key: 'skill_tools',
+    skills: [
+      { name: 'Git / GitFlow', level: 3.5 },
+      { name: 'GitHub', level: 3.5 },
+      { name: 'Visual Studio', level: 4 },
+      { name: 'Jira', level: 3 },
+      { name: 'Confluence', level: 2 },
+      { name: 'Bitbucket', level: 1 }
+    ]
+  },
+  {
+    key: 'skill_methods',
+    skills: [
+      { name: 'Scrum', level: 4 },
+      { name: 'Travail en équipe', level: 4.5, nameEn: 'Teamwork' }
+    ]
+  }
+];
+
+function buildLevelBars(level) {
+  let html = '';
+  for (let i = 1; i <= 5; i++) {
+    if (level >= i) {
+      html += '<span class="level-sq filled"></span>';
+    } else if (level >= i - 0.5) {
+      html += '<span class="level-sq half"></span>';
+    } else {
+      html += '<span class="level-sq"></span>';
+    }
+  }
+  return html;
+}
+
+function getCategoryLabel(key) {
+  return (translations[currentLang] && translations[currentLang][key]) || key;
+}
+
+function renderSkills() {
+  const track = document.getElementById('skills-track');
+  if (!track) return;
+
+  track.innerHTML = skillCategories.map(cat => {
+    const label = getCategoryLabel(cat.key);
+    const skillsHtml = cat.skills.map(skill => {
+      const displayName = (currentLang === 'en' && skill.nameEn) ? skill.nameEn : skill.name;
+      return `
+        <div class="skill-row">
+          <span class="skill-name">${displayName}</span>
+          <div class="skill-level" aria-label="Niveau ${skill.level}/5">
+            ${buildLevelBars(skill.level)}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="skill-category-card">
+        <p class="skill-label">${label}</p>
+        <div class="skill-rows">
+          ${skillsHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function initSkillsCarousel() {
+  const track = document.getElementById('skills-track');
+  const prevBtn = document.querySelector('.skills-prev');
+  const nextBtn = document.querySelector('.skills-next');
+  const dotsContainer = document.getElementById('skills-dots');
+  if (!track) return;
+
+  renderSkills();
+
+  let currentIndex = 0;
+  let cardsPerView = 2;
+  let totalCards = skillCategories.length;
+  let maxIndex = 0;
+
+  function updateCardsPerView() {
+    const width = window.innerWidth;
+    if (width <= 600) cardsPerView = 1;
+    else cardsPerView = 2;
+    maxIndex = Math.max(0, totalCards - cardsPerView);
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+  }
+
+  function updateCarousel() {
+    const card = track.querySelector('.skill-category-card');
+    if (!card) return;
+    const gap = 16;
+    const cardWidth = card.offsetWidth + gap;
+    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+    if (prevBtn) prevBtn.disabled = currentIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+
+    if (dotsContainer) {
+      const pageCount = maxIndex + 1;
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < pageCount; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'skills-dot' + (i === currentIndex ? ' active' : '');
+        dot.setAttribute('aria-label', `Page ${i + 1}`);
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
+    }
+  });
+
+  let startX = 0;
+  let isDragging = false;
+
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && currentIndex < maxIndex) currentIndex++;
+      else if (diff < 0 && currentIndex > 0) currentIndex--;
+      updateCarousel();
+    }
+    isDragging = false;
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    updateCardsPerView();
+    updateCarousel();
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(() => {
+        renderSkills();
+        updateCardsPerView();
+        updateCarousel();
+      }, 0);
+    });
+  });
+
+  updateCardsPerView();
+  requestAnimationFrame(() => {
+    updateCarousel();
+  });
+}
+
+initSkillsCarousel();
