@@ -27,7 +27,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -37,7 +37,7 @@ body {
   font-family: var(--font);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   max-width: 100%;
   width: 100%;
@@ -153,7 +153,9 @@ a {
 .sidebar {
   position: sticky;
   top: 0;
+  align-self: start;
   height: 100vh;
+  height: 100dvh;
   border-right: 1px solid var(--glass-border);
   border-radius: 0;
   overflow-y: auto;
