@@ -51,7 +51,7 @@ const translations = {
     exp4_title: "HEPH Condorcet - Bachelier en informatique",
     exp4_desc: "Orientation développement d'applications.",
     section_contact: "Contact",
-    contact_text: "Disponible pour un premier poste de développeur backend. N'hésite pas à me contacter."
+    contact_text: "Disponible pour un premier poste de développeur fullstack. N'hésite pas à me contacter."
   },
   en: {
     portfolio: "Portfolio",
@@ -103,7 +103,7 @@ const translations = {
     exp4_title: "HEPH Condorcet - Bachelor's degree in Computer Science",
     exp4_desc: "Application development track.",
     section_contact: "Contact",
-    contact_text: "Available for a first backend developer role. Feel free to get in touch."
+    contact_text: "Available for a first fullstack developer role. Feel free to get in touch."
   }
 };
 
