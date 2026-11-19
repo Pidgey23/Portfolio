@@ -1,125 +1,172 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const DEFAULT_LANG = 'fr';
+const SUPPORTED_LANGS = ['fr', 'en'];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const translations = {
-  fr: {
-    portfolio: "Portfolio",
-    role: "Développeur fullstack junior<br>.NET · C# · Java",
-    nav_profil: "Profil",
-    nav_competences: "Compétences",
-    nav_projets: "Projets",
-    nav_parcours: "Parcours",
-    nav_contact: "Contact",
-    location: "Montigny-le-Tilleul, Belgique",
-    hero_title: "La logique d’abord. <em>L’interface ensuite.</em>",
-    cta_projects: "Voir mes projets",
-    cta_contact: "Me contacter",
-    cta_cv: "Télécharger mon CV",
-    section_profil: "Profil",
-    profil_text: "Bachelier en informatique, orientation développement d'applications, avec une première expérience concrète en .NET acquise chez EVS Broadcast Equipment. À l'aise en C# et en Java, avec une préférence claire pour le backend, la logique métier, les protocoles, la façon dont les systèmes communiquent entre eux plutôt que l'interface qui les affiche et son design. Je recherche un premier poste de développeur pour continuer à monter en compétences sur des projets techniques concrets.",
-    hl1_title: "Backend first",
-    hl1_desc: "APIs, protocoles, logique métier",
-    hl2_title: ".NET & Java",
-    hl2_desc: "Stack principale solide",
-    hl3_title: "Prêt à apprendre",
-    hl3_desc: "Premier poste, motivation forte",
-    section_competences: "Compétences",
-    skill_lang: "Langages",
-    skill_web: "Web",
-    skill_data: "Données",
-    skill_tools: "Outils",
-    skill_methods: "Méthodes",
-    section_projets: "Projets",
-    proj1_title: "Intégration serveur dans la suite IPDirector",
-    proj1_meta: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> · Travail de fin d'études · 2026",
-    proj1_desc: "Implémentation en .NET des protocoles de contrôle des serveurs Next-Gen EVS en remote IP. Intégration de la gestion distante d'un nouveau type de serveur dans la suite IPDirector, avec consommation d'une API REST et d'un WebSocket pour le contrôle et le suivi d'activité du serveur.",
-    proj2_title: "EasyShop : une application pour retrait en point de collect",
-    proj2_meta: "Projet scolaire",
-    proj2_desc: "Application web de commande et de retrait en point de collect, développée en ASP.NET Core MVC : gestion des produits, des commandes et des utilisateurs, du front à la base de données.",
-    proj3_title: "Gestion d'un club cycliste",
-    proj3_meta: "Projet scolaire",
-    proj3_desc: "Application desktop pour la numérisation et la gestion administrative d'un club de vélo, membres, cotisations, suivi avec une interface construite sous WindowBuilder.",
-    proj4_title: "Application liste de cadeaux en JEE",
-    proj4_meta: "Projet scolaire",
-    proj4_desc: "Application web complète en architecture client-serveur pour créer et gérer des listes de cadeaux, avec une interface développée en JSP côté client.",
-    section_parcours: "Parcours",
-    exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> à Liège",
-    exp1_desc: "Stage de 15 semaines. Sujet de TFE : implémentation en .NET des protocoles de contrôle des serveurs Next-Gen EVS en remote IP pour la suite IPDirector.",
-    exp2_title: "<a href=\"https://technofuturtic.be\" target=\"_blank\" rel=\"noopener\">Technofutur TIC</a> - role de chef de projet",
-    exp2_desc: "Gestion de 16 étudiants lors d'un exercice de configuration de pare-feu CheckPoint, routeurs et postes de travail. Certificat Technofutur Labo Réseaux et CheckPoint.",
-    exp3_title: "Hackathon <a href=\"https://www.mic-belgique.be\" target=\"_blank\" rel=\"noopener\">MIC</a> à Mons",
-    exp3_desc: "Méthode Scrum, technologies Microsoft. Livraison d'un prototype fonctionnel en 48 heures.",
-    exp4_title: "HEPH Condorcet - Bachelier en informatique",
-    exp4_desc: "Orientation développement d'applications.",
-    section_contact: "Contact",
-    contact_text: "Disponible pour un premier poste de développeur fullstack. N'hésite pas à me contacter."
-  },
   en: {
-    portfolio: "Portfolio",
-    role: "Junior fullstack Developer<br>.NET · C# · Java",
+    meta_title: "Julien Pasque - Junior Fullstack Developer",
+    meta_description: "Portfolio of Julien Pasque, junior fullstack developer specialising in C#, .NET and Java.",
+    skip_link: "Skip to content",
+    aria_nav: "Main navigation",
+    aria_nav_mobile: "Mobile navigation",
+    aria_lang: "Language selection",
+    aria_theme: "Toggle theme",
+    aria_menu: "Open menu",
+    aria_scroll: "Scroll to profile",
+    aria_code_proj2: "EasyShop source code on GitHub",
+    aria_code_proj3: "Cycling club project source code on GitHub",
+
     nav_profil: "About",
     nav_competences: "Skills",
     nav_projets: "Projects",
-    nav_parcours: "Experience",
+    nav_parcours: "Journey",
     nav_contact: "Contact",
-    location: "Montigny-le-Tilleul, Belgium",
-    hero_title: "Logic first. <em>Interface second.</em>",
+
+    status: "Available now",
+    location_short: "Belgium",
+    role: "Junior fullstack developer<br><strong>C# · .NET · Java</strong>",
+    hero_title: "Every project is a puzzle <em>I love to solve.</em>",
     cta_projects: "View my projects",
-    cta_contact: "Get in touch",
     cta_cv: "Download my CV",
+
     section_profil: "About",
-    profil_text: "Bachelor's degree in computer science, application development track, with hands-on .NET experience gained at EVS Broadcast Equipment. Comfortable with C# and Java, with a clear preference for backend development, business logic, protocols, and how systems communicate with each other rather than the interface that displays them and its design. Looking for a first developer role to continue building my skills through real-world technical projects.",
-    hl1_title: "Backend first",
-    hl1_desc: "APIs, protocols, business logic",
-    hl2_title: ".NET & Java",
-    hl2_desc: "Strong core stack",
-    hl3_title: "Ready to learn",
-    hl3_desc: "First role, strong motivation",
+    profil_heading: "Understand the need, <em>then build the solution.</em>",
+    profil_text: "Graduated in 2026 with a bachelor's degree in computer science, application development track. During my internship at EVS Broadcast Equipment, I integrated remote control of a new server type into the IPDirector suite in C#/.NET, through a REST API and a WebSocket, within a Scrum team.",
+    profil_text2: "Comfortable with C# and Java, I work across the whole stack: business logic, APIs and system-to-system communication on the server, all the way to the client-side interface. I pick up new stacks quickly and I'm looking for a first fullstack developer role.",
+    fact_lang: "Languages",
+    fact_lang_val: "French (native) · English B2",
+    fact_loc: "Based in",
+    fact_mob: "Mobility",
+    fact_mob_val: "Driving licence (B)",
+    stat1: "weeks of internship at EVS Broadcast Equipment",
+    stat2: "students led as project lead",
+    stat3: "to deliver a prototype at the MIC hackathon",
+    years_short: "yrs",
+    stat4: "bachelor's degree in application development",
+
     section_competences: "Skills",
-    skill_lang: "Languages",
-    skill_web: "Web",
-    skill_data: "Data",
-    skill_tools: "Tools",
-    skill_methods: "Methods",
+    skills_heading: "Back to front, <em>a stack I master</em>.",
+    sk_backend_desc: "Business logic, APIs and everything that runs server-side.",
+    sk_web_desc: "Interfaces and communication between client and server.",
+    term_rest_api: "REST API",
+    term_client_server: "Client-server",
+    sk_db: "Databases",
+    sk_tools: "Tools",
+    sk_method: "Methods",
+    sk_soft: "Soft skills",
+    soft1: "Teamwork",
+    soft2: "Adaptability",
+    soft3: "Prioritisation",
+    soft4: "Tech watch",
+
     section_projets: "Projects",
+    projects_heading: "From server protocols <em>to complete applications</em>.",
+    proj1_badge: "Final-year project · 2026",
+    proj1_meta: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> · 15-week internship",
     proj1_title: "Server integration into the IPDirector suite",
-    proj1_meta: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> · Final-year project · 2026",
     proj1_desc: "Implementation of control protocols for EVS Next-Gen servers over remote IP using .NET. Integrated remote management of a new server type into the IPDirector suite, consuming a REST API and a WebSocket for server control and activity monitoring.",
-    proj2_title: "EasyShop: an application for click-and-collect",
-    proj2_meta: "School project",
-    proj2_desc: "Web application for ordering and collecting purchases at a collection point, developed with ASP.NET Core MVC: management of products, orders and users, from the front end to the database.",
+    proj1_p1: "From designing a proof of concept to integrating it",
+    proj1_p2: "Agile Scrum team, Jira, Confluence, Bitbucket",
+    proj2_meta: "School project · Web",
+    proj2_title: "EasyShop",
+    proj2_desc: "Web application for ordering and collecting purchases at a pickup point, built with ASP.NET Core MVC: management of products, orders and users, from the front end to the database.",
+    proj3_meta: "School project · Desktop",
     proj3_title: "Cycling club management",
-    proj3_meta: "School project",
-    proj3_desc: "Desktop application for digitising and managing the administration of a cycling club, including members, membership fees and tracking, with an interface built using WindowBuilder.",
-    proj4_title: "JEE gift list application",
-    proj4_meta: "School project",
+    proj3_desc: "Desktop application for digitising and managing the administration of a cycling club: members, membership fees and tracking, with an interface built using WindowBuilder.",
+    proj4_meta: "School project · Web",
+    proj4_title: "JEE gift list",
     proj4_desc: "Full client-server web application for creating and managing gift lists, with a client interface developed using JSP.",
-    section_parcours: "Experience",
-    exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> in Liège",
-    exp1_desc: "15-week internship. Final-year project: .NET implementation of control protocols for EVS Next-Gen servers over remote IP for the IPDirector suite.",
-    exp2_title: "<a href=\"https://technofuturtic.be\" target=\"_blank\" rel=\"noopener\">Technofutur TIC</a> - Project lead",
-    exp2_desc: "Managed 16 students during an exercise involving the configuration of Check Point firewalls, routers and workstations. Technofutur Networks Lab and Check Point certificate.",
-    exp3_title: "<a href=\"https://www.mic-belgique.be\" target=\"_blank\" rel=\"noopener\">MIC</a> Hackathon in Mons",
+    see_code: "View code",
+    more_github: "All source code on GitHub",
+
+    section_parcours: "Journey",
+    path_heading: "Experience &amp; <em>education</em>.",
+    path_exp: "Experience",
+    path_edu: "Education",
+    exp1_title: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a>, Liège",
+    exp1_role: "Development internship · 15 weeks",
+    exp1_desc: "Final-year project: .NET implementation of control protocols for EVS Next-Gen servers over remote IP for the IPDirector suite, within an Agile Scrum team.",
+    exp2_title: "<a href=\"https://technofuturtic.be\" target=\"_blank\" rel=\"noopener\">Technofutur TIC</a> · Networks Lab",
+    exp2_role: "Project lead",
+    exp2_desc: "Led 16 students through configuring Check Point firewalls, routers and workstations. Technofutur Networks Lab and Check Point certificate.",
+    exp3_title: "<a href=\"https://www.mic-belgique.be\" target=\"_blank\" rel=\"noopener\">MIC</a> Hackathon, Mons",
+    exp3_role: "Teamwork",
     exp3_desc: "Scrum methodology and Microsoft technologies. Delivered a working prototype within 48 hours.",
-    exp4_title: "HEPH Condorcet - Bachelor's degree in Computer Science",
-    exp4_desc: "Application development track.",
+    edu1_role: "Bachelor's degree in Computer Science",
+    edu1_desc: "Application development track.",
+    edu2_role: "Secondary education",
+    edu2_desc: "Business economics track.",
+    interests_title: "Beyond code",
+    int1: "Sports",
+    int2: "Chess &amp; puzzles",
+    int3: "Video games",
+
     section_contact: "Contact",
-    contact_text: "Available for a first fullstack developer role. Feel free to get in touch."
+    contact_heading: "Let’s build something <em>solid</em>.",
+    contact_text: "Available now for a first fullstack developer role. Feel free to get in touch.",
+    copy: "Copy",
+    cv_short: "CV (PDF)",
+    footer_note: "Static site · HTML, CSS &amp; JavaScript · GitHub Pages",
+    to_top: "Back to top ↑"
   }
 };
 
-let currentLang = localStorage.getItem('portfolio-lang') || 'fr';
+const uiStrings = {
+  fr: { copied: 'Adresse copiée ✓', copyFail: 'Impossible de copier', menuOpen: 'Ouvrir le menu', menuClose: 'Fermer le menu' },
+  en: { copied: 'Email copied ✓', copyFail: 'Could not copy', menuOpen: 'Open menu', menuClose: 'Close menu' }
+};
 
-function setLanguage(lang) {
+const cvFiles = { fr: 'FR-PASQUE-JULIEN-CV.pdf', en: 'EN-PASQUE-JULIEN-CV.pdf' };
+
+const storage = {
+  get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch {} }
+};
+
+const textNodes = [...document.querySelectorAll('[data-i18n]')].map(el => ({
+  el, key: el.dataset.i18n, original: el.innerHTML.trim()
+}));
+
+const attrNodes = [...document.querySelectorAll('[data-i18n-attr]')].flatMap(el =>
+  el.dataset.i18nAttr.split(';').map(pair => {
+    const [attr, key] = pair.split(':').map(part => part.trim());
+    return { el, attr, key, original: el.getAttribute(attr) };
+  })
+);
+
+function translate(key, lang, fallback) {
+  if (lang === DEFAULT_LANG) return fallback;
+  const value = translations[lang] && translations[lang][key];
+  return value !== undefined ? value : fallback;
+}
+
+function resolveInitialLang() {
+  let fromUrl = null;
+  try { fromUrl = new URLSearchParams(location.search).get('lang'); } catch {}
+  const candidate = fromUrl || storage.get('portfolio-lang');
+  return SUPPORTED_LANGS.includes(candidate) ? candidate : DEFAULT_LANG;
+}
+
+function syncUrl(lang) {
+  try {
+    const url = new URL(location.href);
+    if (lang === DEFAULT_LANG) url.searchParams.delete('lang');
+    else url.searchParams.set('lang', lang);
+    history.replaceState(null, '', url);
+  } catch {}
+}
+
+let currentLang = resolveInitialLang();
+
+function setLanguage(lang, { updateUrl = true } = {}) {
   currentLang = lang;
-  localStorage.setItem('portfolio-lang', lang);
+  storage.set('portfolio-lang', lang);
   document.documentElement.lang = lang;
 
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[lang][key] !== undefined) {
-      el.innerHTML = translations[lang][key];
-    }
-  });
+  textNodes.forEach(({ el, key, original }) => { el.innerHTML = translate(key, lang, original); });
+  attrNodes.forEach(({ el, attr, key, original }) => { el.setAttribute(attr, translate(key, lang, original)); });
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const isActive = btn.dataset.lang === lang;
@@ -127,266 +174,205 @@ function setLanguage(lang) {
     btn.setAttribute('aria-pressed', isActive);
   });
 
-  const cvLink = document.getElementById('cv-download');
-  if (cvLink) {
-    cvLink.href = lang === 'en' ? 'EN-PASQUE-JULIEN-CV.pdf' : 'FR-PASQUE-JULIEN-CV.pdf';
-  }
+  document.querySelectorAll('.cv-link').forEach(link => { link.href = cvFiles[lang]; });
+
+  if (updateUrl) syncUrl(lang);
+  document.documentElement.classList.remove('i18n-pending');
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
 });
 
-setLanguage(currentLang);
+const themeToggle = document.querySelector('.theme-toggle');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
 
-const sections = document.querySelectorAll('.section');
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  if (themeMeta) themeMeta.setAttribute('content', theme === 'light' ? '#ece5d8' : '#13110f');
+}
+applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
 
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, {
-  threshold: 0.12,
-  rootMargin: '0px 0px -40px 0px'
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  storage.set('portfolio-theme', next);
 });
 
-sections.forEach(section => sectionObserver.observe(section));
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+function setMenu(open) {
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', uiStrings[currentLang][open ? 'menuClose' : 'menuOpen']);
+  document.body.classList.toggle('menu-open', open);
+  if (open) {
+    mobileMenu.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => mobileMenu.classList.add('open')));
+  } else {
+    mobileMenu.classList.remove('open');
+    setTimeout(() => { if (!mobileMenu.classList.contains('open')) mobileMenu.hidden = true; }, 350);
+  }
+}
+
+menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
+mobileMenu.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+    setMenu(false);
+    menuToggle.focus();
+  }
+});
+window.matchMedia('(min-width: 921px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+
+const topbar = document.querySelector('.topbar');
+const progress = document.querySelector('.scroll-progress span');
+let ticking = false;
+
+function onScroll() {
+  const y = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  topbar.classList.toggle('scrolled', y > 20);
+  progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
+  if (window.innerHeight + y >= document.documentElement.scrollHeight - 80) setActiveNav('#contact');
+  ticking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+}, { passive: true });
+
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const siblings = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+      const index = Math.max(0, siblings.indexOf(el));
+      el.style.transitionDelay = `${Math.min(index, 6) * 70}ms`;
+      el.classList.add('in');
+      revealObserver.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('in'));
+}
 
 const navLinks = document.querySelectorAll('.nav a');
-
 function setActiveNav(href) {
   navLinks.forEach(link => {
     const isActive = link.getAttribute('href') === href;
     link.classList.toggle('active', isActive);
-    if (isActive) {
-      link.setAttribute('aria-current', 'page');
-    } else {
-      link.removeAttribute('aria-current');
-    }
+    if (isActive) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
   });
 }
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) setActiveNav(`#${entry.target.id}`); });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+document.querySelectorAll('main section[id]').forEach(s => navObserver.observe(s));
 
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      setActiveNav(`#${id}`);
-    }
-  });
-}, {
-  rootMargin: '-20% 0px -35% 0px',
-  threshold: 0
-});
-
-sections.forEach(section => navObserver.observe(section));
-
-window.addEventListener('scroll', () => {
-  const scrollBottom = window.innerHeight + window.scrollY;
-  const docHeight = document.documentElement.scrollHeight;
-
-  if (scrollBottom >= docHeight - 80) {
-    setActiveNav('#contact');
-  }
-}, { passive: true });
-
-const skillCategories = [
-  {
-    key: 'skill_lang',
-    skills: [
-      { name: 'C#', level: 4.5 },
-      { name: 'Java', level: 4 },
-      { name: 'Python', level: 3 },
-      { name: 'C', level: 2 },
-      { name: 'UML', level: 3.5 }
-    ]
-  },
-  {
-    key: 'skill_web',
-    skills: [
-      { name: 'HTML / CSS', level: 4 },
-      { name: 'JavaScript', level: 3 },
-      { name: '.NET', level: 4 },
-      { name: 'JEE / JSP', level: 4 }
-    ]
-  },
-  {
-    key: 'skill_data',
-    skills: [
-      { name: 'SQL', level: 3.5 },
-      { name: 'PL/SQL', level: 2 }
-    ]
-  },
-  {
-    key: 'skill_tools',
-    skills: [
-      { name: 'Git / GitFlow', level: 3.5 },
-      { name: 'GitHub', level: 3.5 },
-      { name: 'Visual Studio', level: 4 },
-      { name: 'Jira', level: 3 },
-      { name: 'Confluence', level: 2 },
-      { name: 'Bitbucket', level: 1 }
-    ]
-  },
-  {
-    key: 'skill_methods',
-    skills: [
-      { name: 'Scrum', level: 4 },
-      { name: 'Travail en équipe', level: 4.5, nameEn: 'Teamwork' }
-    ]
-  }
-];
-
-function buildLevelBars(level) {
-  let html = '';
-  for (let i = 1; i <= 5; i++) {
-    if (level >= i) {
-      html += '<span class="level-sq filled"></span>';
-    } else if (level >= i - 0.5) {
-      html += '<span class="level-sq half"></span>';
-    } else {
-      html += '<span class="level-sq"></span>';
-    }
-  }
-  return html;
+const counters = document.querySelectorAll('[data-count]');
+if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const duration = 1400;
+      const start = performance.now();
+      const tick = now => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      el.textContent = '0';
+      requestAnimationFrame(tick);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => counterObserver.observe(c));
 }
 
-function getCategoryLabel(key) {
-  return (translations[currentLang] && translations[currentLang][key]) || key;
-}
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-function renderSkills() {
-  const track = document.getElementById('skills-track');
-  if (!track) return;
-
-  track.innerHTML = skillCategories.map(cat => {
-    const label = getCategoryLabel(cat.key);
-    const skillsHtml = cat.skills.map(skill => {
-      const displayName = (currentLang === 'en' && skill.nameEn) ? skill.nameEn : skill.name;
-      return `
-        <div class="skill-row">
-          <span class="skill-name">${displayName}</span>
-          <div class="skill-level" aria-label="Niveau ${skill.level}/5">
-            ${buildLevelBars(skill.level)}
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    return `
-      <div class="skill-category-card">
-        <p class="skill-label">${label}</p>
-        <div class="skill-rows">
-          ${skillsHtml}
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function initSkillsCarousel() {
-  const track = document.getElementById('skills-track');
-  const prevBtn = document.querySelector('.skills-prev');
-  const nextBtn = document.querySelector('.skills-next');
-  const dotsContainer = document.getElementById('skills-dots');
-  if (!track) return;
-
-  renderSkills();
-
-  let currentIndex = 0;
-  let cardsPerView = 2;
-  let totalCards = skillCategories.length;
-  let maxIndex = 0;
-
-  function updateCardsPerView() {
-    const width = window.innerWidth;
-    if (width <= 600) cardsPerView = 1;
-    else cardsPerView = 2;
-    maxIndex = Math.max(0, totalCards - cardsPerView);
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
-  }
-
-  function updateCarousel() {
-    const card = track.querySelector('.skill-category-card');
-    if (!card) return;
-    const gap = 16;
-    const cardWidth = card.offsetWidth + gap;
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-    if (prevBtn) prevBtn.disabled = currentIndex === 0;
-    if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
-
-    if (dotsContainer) {
-      const pageCount = maxIndex + 1;
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < pageCount; i++) {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'skills-dot' + (i === currentIndex ? ' active' : '');
-        dot.setAttribute('aria-label', `Page ${i + 1}`);
-        dot.addEventListener('click', () => {
-          currentIndex = i;
-          updateCarousel();
-        });
-        dotsContainer.appendChild(dot);
-      }
-    }
-  }
-
-  prevBtn?.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    if (currentIndex < maxIndex) {
-      currentIndex++;
-      updateCarousel();
-    }
-  });
-
-  let startX = 0;
-  let isDragging = false;
-
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  }, { passive: true });
-
-  track.addEventListener('touchend', (e) => {
-    if (!isDragging) return;
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0 && currentIndex < maxIndex) currentIndex++;
-      else if (diff < 0 && currentIndex > 0) currentIndex--;
-      updateCarousel();
-    }
-    isDragging = false;
-  }, { passive: true });
-
-  window.addEventListener('resize', () => {
-    updateCardsPerView();
-    updateCarousel();
-  });
-
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      setTimeout(() => {
-        renderSkills();
-        updateCardsPerView();
-        updateCarousel();
-      }, 0);
+if (finePointer) {
+  document.querySelectorAll('.spotlight').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
     });
   });
 
-  updateCardsPerView();
-  requestAnimationFrame(() => {
-    updateCarousel();
-  });
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.magnetic').forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.18;
+        const y = (e.clientY - r.top - r.height / 2) * 0.3;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+
+    const visual = document.querySelector('.system-card');
+    const hero = document.querySelector('.hero');
+    if (visual && hero) {
+      hero.addEventListener('pointermove', e => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        visual.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+      });
+      hero.addEventListener('pointerleave', () => { visual.style.transform = ''; });
+      visual.style.transition = 'transform .6s cubic-bezier(.22,1,.36,1)';
+    }
+  }
 }
 
-initSkillsCarousel();
+const log = document.querySelector('[data-log]');
+if (log && !prefersReducedMotion) {
+  const lines = [
+    '<span class="log-t">→</span> GET <span class="log-k">/status</span> <span class="log-ok">200</span>',
+    '<span class="log-t">⇄</span> ws <span class="log-k">connected</span>',
+    '<span class="log-t">←</span> event <span class="log-k">activity.update</span>',
+    '<span class="log-t">→</span> POST <span class="log-k">/command</span> <span class="log-ok">202</span>',
+    '<span class="log-t">←</span> event <span class="log-k">state.changed</span>',
+    '<span class="log-t">→</span> GET <span class="log-k">/config</span> <span class="log-ok">200</span>',
+    '<span class="log-t">⇄</span> ws <span class="log-k">heartbeat</span>'
+  ];
+  let i = 3;
+  setInterval(() => {
+    if (document.hidden) return;
+    const li = document.createElement('li');
+    li.innerHTML = lines[i % lines.length];
+    log.appendChild(li);
+    if (log.children.length > 3) log.firstElementChild.remove();
+    i++;
+  }, 2200);
+}
+
+const toast = document.querySelector('.toast');
+let toastTimer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      showToast(uiStrings[currentLang].copied);
+    } catch {
+      showToast(uiStrings[currentLang].copyFail);
+    }
+  });
+});
+
+setLanguage(currentLang, { updateUrl: false });
+onScroll();
