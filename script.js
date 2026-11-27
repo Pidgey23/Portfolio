@@ -31,7 +31,6 @@ const translations = {
     cta_projects: "View my projects",
     cta_cv: "Download my CV",
 
-    section_profil: "About",
     profil_heading: "Understand the need, <em>then build the solution.</em>",
     profil_text: "Graduated in 2026 with a bachelor's degree in computer science, application development track. During my internship at EVS Broadcast Equipment, I integrated remote control of a new server type into the IPDirector suite in C#/.NET, through a REST API and a WebSocket, within a Scrum team.",
     profil_text2: "Comfortable with C# and Java, I work across the whole stack: business logic, APIs and system-to-system communication on the server, all the way to the client-side interface. I pick up new stacks quickly and I'm looking for a first fullstack developer role.",
@@ -46,7 +45,6 @@ const translations = {
     years_short: "yrs",
     stat4: "bachelor's degree in application development",
 
-    section_competences: "Skills",
     skills_heading: "Back to front, <em>a stack I master</em>.",
     sk_backend_desc: "Business logic, APIs and everything that runs server-side.",
     sk_web_desc: "Interfaces and communication between client and server.",
@@ -61,7 +59,6 @@ const translations = {
     soft3: "Prioritisation",
     soft4: "Tech watch",
 
-    section_projets: "Projects",
     projects_heading: "From server protocols <em>to complete applications</em>.",
     proj1_badge: "Final-year project · 2026",
     proj1_meta: "<a href=\"https://evs.com/\" target=\"_blank\" rel=\"noopener\">EVS Broadcast Equipment</a> · 15-week internship",
@@ -81,7 +78,6 @@ const translations = {
     see_code: "View code",
     more_github: "All source code on GitHub",
 
-    section_parcours: "Journey",
     path_heading: "Experience &amp; <em>education</em>.",
     path_exp: "Experience",
     path_edu: "Education",
@@ -103,7 +99,6 @@ const translations = {
     int2: "Chess &amp; puzzles",
     int3: "Video games",
 
-    section_contact: "Contact",
     contact_heading: "Let’s build something <em>solid</em>.",
     contact_text: "Available now for a first fullstack developer role. Feel free to get in touch.",
     copy: "Copy",
