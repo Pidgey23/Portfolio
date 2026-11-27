@@ -184,7 +184,7 @@ const themeMeta = document.querySelector('meta[name="theme-color"]');
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  if (themeMeta) themeMeta.setAttribute('content', theme === 'light' ? '#ece5d8' : '#13110f');
+  if (themeMeta) themeMeta.setAttribute('content', theme === 'light' ? '#cfc6b8' : '#13110f');
 }
 applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
 
